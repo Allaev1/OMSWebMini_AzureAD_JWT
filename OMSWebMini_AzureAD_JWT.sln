@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30128.74
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OMSWebMini", "OMSWebMini\OMSWebMini.csproj", "{087D19A5-4165-4B98-A373-1E4FDDF5999A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OMSWebMini_AzureAD_JWT", "OMSWebMini\OMSWebMini_AzureAD_JWT.csproj", "{087D19A5-4165-4B98-A373-1E4FDDF5999A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
