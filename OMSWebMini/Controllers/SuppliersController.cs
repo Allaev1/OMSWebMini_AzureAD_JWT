@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Web.Resource;
 using OMSWebMini.Data;
 using OMSWebMini.Model;
 
@@ -27,12 +28,16 @@ namespace OMSWebMini.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Supplier>>> GetSuppliers()
         {
+            HttpContext.VerifyUserHasAnyAcceptedScope("Read");
+
             return await northwindContext.Suppliers.ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Supplier>> GetSupplier(int id)
         {
+            HttpContext.VerifyUserHasAnyAcceptedScope("Read");
+
             var supplier = await northwindContext.Suppliers.FindAsync(id);
 
             if (supplier == null) return NotFound();
@@ -43,6 +48,8 @@ namespace OMSWebMini.Controllers
         [HttpPost]
         public async Task<ActionResult<Supplier>> PostSupplier([FromBody] Supplier newSupplier)
         {
+            HttpContext.VerifyUserHasAnyAcceptedScope("Create");
+
             northwindContext.Suppliers.Add(newSupplier);
             await northwindContext.SaveChangesAsync();
 
@@ -52,6 +59,8 @@ namespace OMSWebMini.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult> PutSupplier(int id, [FromBody] Supplier editedSupplier)
         {
+            HttpContext.VerifyUserHasAnyAcceptedScope("Update");
+
             if (id == editedSupplier.SupplierId) return BadRequest();
 
             northwindContext.Entry(editedSupplier).State = EntityState.Modified;
@@ -74,6 +83,8 @@ namespace OMSWebMini.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteSupplier(int id)
         {
+            HttpContext.VerifyUserHasAnyAcceptedScope("Delete");
+
             var supplier = await northwindContext.Suppliers.FindAsync(id);
 
             northwindContext.Suppliers.Remove(supplier);

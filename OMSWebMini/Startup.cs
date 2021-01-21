@@ -33,8 +33,7 @@ namespace OMSWebMini
             services.AddControllersWithViews().
                 AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApi(Configuration,"AzureAd");
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
 
             services.AddSwaggerGen(c =>
             {
